@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.10-slim as builder
+FROM --platform=linux/amd64 python:3.13.5-slim as builder
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ COPY contributor-1/poetry.lock contributor-1/pyproject.toml ./
 
 RUN poetry install --no-cache --no-root
 
-FROM --platform=linux/amd64 python:3.10-slim as runtime
+FROM --platform=linux/amd64 python:3.13.5-slim as runtime
 
 RUN apt-get update && apt-get install libpq5 -y && rm -rf /var/lib/apt/lists/*  # Install libpq for psycopg2
 
