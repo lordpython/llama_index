@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.10-slim as builder
+FROM --platform=linux/amd64 python:3.14.0rc1-slim as builder
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ COPY contributor-1/poetry.lock contributor-1/pyproject.toml ./
 
 RUN poetry install --no-cache --no-root
 
-FROM --platform=linux/amd64 python:3.10-slim as runtime
+FROM --platform=linux/amd64 python:3.14.0rc1-slim as runtime
 
 RUN apt-get update -y && \
     apt-get install --no-install-recommends libpq5 -y && \
